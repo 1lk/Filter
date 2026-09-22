@@ -1,0 +1,36 @@
+{
+  "url": "http://127.0.0.1:8080/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "The Filter",
+      "hasCanvas": false,
+      "bodyTextLen": 56,
+      "bodyTextHash": "2dd5f1b7251342d3d2be82ba3db683e8686db3f55eeac22f5aed1e9a70c78205",
+      "bodyTextPrefix": "105 BPM The Filter A film for the song. Press play. PLAY",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "The Filter",
+      "hasCanvas": false,
+      "bodyTextLen": 56,
+      "bodyTextHash": "2dd5f1b7251342d3d2be82ba3db683e8686db3f55eeac22f5aed1e9a70c78205",
+      "bodyTextPrefix": "105 BPM The Filter A film for the song. Press play. PLAY",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/app-builder-preview.json"
+}

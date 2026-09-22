@@ -1,0 +1,228 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: "Figtree";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/figtree-400.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Figtree";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/figtree-500.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Figtree";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("/fonts/figtree-600.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Instrument Serif";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/instrument-serif.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Instrument Serif";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/instrument-serif-italic.ttf") format("truetype");
+}
+
+@theme {
+  --color-bg: #08070a;
+  --color-surface: #121014;
+  --color-fg: #efe8dc;
+  --color-muted: #8a8378;
+  --color-subtle: #5c574f;
+  --color-accent: #c8915a;
+  --color-accent-fg: #1a120c;
+  --color-border: rgb(239 232 220 / 12%);
+  --color-cyan-gel: #7aa3a8;
+  --color-red-gel: #8a3a32;
+
+  --font-sans: "Figtree", "Segoe UI", system-ui, sans-serif;
+  --font-display: "Instrument Serif", "Iowan Old Style", Georgia, serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+
+  --text-xs: clamp(0.75rem, 0.7rem + 0.2vw, 0.8125rem);
+  --text-sm: clamp(0.875rem, 0.82rem + 0.25vw, 0.9375rem);
+  --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.0625rem);
+  --text-lg: clamp(1.125rem, 1rem + 0.5vw, 1.25rem);
+  --text-xl: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+  --text-2xl: clamp(2rem, 1.4rem + 2vw, 3rem);
+  --tracking-caps: 0.28em;
+  --tracking-widest: 0.42em;
+  --tracking-display: -0.03em;
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  html,
+  body {
+    height: 100%;
+    background: var(--color-bg);
+    color: var(--color-fg);
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html {
+    font-family: var(--font-sans);
+  }
+}
+
+.letterbox {
+  height: clamp(16px, 5vh, 44px);
+}
+
+.grade-none {
+  filter: contrast(1.04) saturate(1.02);
+}
+.grade-amber {
+  filter: sepia(0.22) saturate(1.18) contrast(1.06) hue-rotate(-6deg);
+}
+.grade-cyan {
+  filter: saturate(1.12) hue-rotate(14deg) contrast(1.06) brightness(0.98);
+}
+.grade-red {
+  filter: sepia(0.35) hue-rotate(-18deg) saturate(1.05) contrast(1.12);
+}
+.grade-crush {
+  filter: contrast(1.22) saturate(0.82) brightness(0.96);
+}
+.grade-bleach {
+  filter: contrast(1.18) brightness(1.1) saturate(1.25);
+}
+
+.clip-layer {
+  opacity: 0;
+  transition: opacity 480ms var(--ease-smooth-out);
+  pointer-events: none;
+}
+.clip-layer.is-on {
+  opacity: 1;
+}
+
+.grain-layer {
+  position: absolute;
+  inset: 0;
+  background-image: url("/stills/grain.png");
+  background-size: 180px 180px;
+  opacity: 0.14;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  animation: grain-shift 0.45s steps(4) infinite;
+}
+
+@keyframes grain-shift {
+  0% { background-position: 0 0; }
+  25% { background-position: -12px 18px; }
+  50% { background-position: 14px -8px; }
+  75% { background-position: -6px -16px; }
+}
+
+.vignette {
+  background: radial-gradient(
+    ellipse at center,
+    transparent 42%,
+    rgb(8 7 10 / 0.55) 100%
+  );
+  pointer-events: none;
+}
+
+.leak {
+  pointer-events: none;
+  background: linear-gradient(
+    118deg,
+    rgb(200 145 90 / 0) 40%,
+    rgb(200 145 90 / calc(var(--pulse, 0) * 0.22)) 58%,
+    rgb(122 163 168 / 0) 78%
+  );
+  mix-blend-mode: screen;
+}
+
+.film-pulse {
+  transform: scale(calc(1 + var(--pulse, 0) * 0.012));
+}
+
+.play-ring {
+  box-shadow: 0 0 0 1px rgb(239 232 220 / 0.08);
+}
+
+.chrome-fade {
+  transition: opacity 250ms var(--ease-smooth-out);
+}
+
+.player-chrome {
+  padding-bottom: max(1.25rem, env(safe-area-inset-bottom));
+}
+
+.gel-strip {
+  border-radius: 2px;
+}
+
+.progress-track {
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  height: 44px;
+  cursor: pointer;
+}
+.progress-track::-webkit-slider-runnable-track {
+  height: 2px;
+  background: rgb(239 232 220 / 22%);
+  border-radius: 99px;
+}
+.progress-track::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 10px;
+  height: 10px;
+  margin-top: -4px;
+  border-radius: 99px;
+  background: var(--color-fg);
+  box-shadow: 0 0 0 4px rgb(8 7 10 / 0.4);
+}
+.progress-track::-moz-range-track {
+  height: 2px;
+  background: rgb(239 232 220 / 22%);
+  border-radius: 99px;
+}
+.progress-track::-moz-range-thumb {
+  width: 10px;
+  height: 10px;
+  border: 0;
+  border-radius: 99px;
+  background: var(--color-fg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .clip-layer,
+  .film-pulse {
+    transition: none;
+    transform: none;
+  }
+  .grain-layer {
+    opacity: 0.06;
+    animation: none;
+  }
+}
